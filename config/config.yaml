@@ -16,8 +16,11 @@ mihoyobbs:
   checkin: true
   checkin_multi: true
   checkin_multi_list:
+  - 1
   - 2
   - 5
+  - 6
+  - 8
   read_posts: true
   like_posts: true
   cancel_like_posts: true
@@ -31,11 +34,11 @@ games:
       auto_checkin: true
       black_list: []
     honkai2:
-      auto_checkin: true
+      auto_checkin: false
       black_list: []
     honkai3rd:
       auto_checkin: true
-      black_list: []
+      black_list: ['624738450']
     tears_of_themis:
       auto_checkin: false
       black_list: []
