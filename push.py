@@ -79,25 +79,17 @@ def cqhttp(send_title, push_message):
 
 
 # smtp mail(电子邮件)
-# 感谢 @islandwind 提供的随机壁纸api 个人主页：https://space.bilibili.com/7600422
 def smtp(send_title, push_message):
     import smtplib
     from email.mime.text import MIMEText
     
-    IMAGE_API = "https://api.iw233.cn/api.php?sort=random&type=json"
-    
-    try:
-        image_url = http.get(IMAGE_API).json()["pic"][0]
-    except:
-        image_url = "unable to get the image"
-        log.warning("获取随机背景图失败，请检查图片api")
     with open("assets/email_example.html", encoding="utf-8") as f:
         EMAIL_TEMPLATE = f.read()
-    message = EMAIL_TEMPLATE.format(title=send_title, message=push_message.replace("\n", "<br/>"), image_url=image_url)
+    message = EMAIL_TEMPLATE.format(title=send_title, message=push_message.replace("\n", "<br/>"), image_url='https://fenlyin.asia/keqing.jpg')
     message = MIMEText(message, "html", "utf-8")
     message['Subject'] = cfg["smtp"]["subject"]
+    message['From'] = cfg['smtp']['fromaddr']
     message['To'] = cfg["smtp"]["toaddr"]
-    message['From'] = f"{cfg['smtp']['subject']}<{cfg['smtp']['fromaddr']}>"
     if cfg.getboolean("smtp", "ssl_enable"):
         server = smtplib.SMTP_SSL(cfg["smtp"]["mailhost"], cfg.getint("smtp", "port"))
     else:
