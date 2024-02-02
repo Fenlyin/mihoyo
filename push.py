@@ -83,7 +83,7 @@ def smtp(send_title, push_message):
     import smtplib
     from email.mime.text import MIMEText
     
-    with open("assets/email_example.html", encoding="utf-8") as f:
+    with open(f"{os.path.join(os.path.dirname(os.path.realpath(__file__)), 'assets/email_example.html')})", encoding="utf-8") as f:
         EMAIL_TEMPLATE = f.read()
     message = EMAIL_TEMPLATE.format(title=send_title, message=push_message.replace("\n", "<br/>"), image_url='https://fenlyin.asia/keqing.jpg')
     message = MIMEText(message, "html", "utf-8")
